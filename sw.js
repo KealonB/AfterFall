@@ -1,18 +1,5 @@
-/* AFTERFALL v0.1.0 offline support. Bump the cache name for every published version. */
-const CACHE = 'afterfall-v0.1.0';
-const ASSETS = ['./','./index.html','./styles.css','./data.js','./game.js','./favicon.svg'];
-self.addEventListener('install', event => {
-  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)).then(()=>self.skipWaiting()));
-});
-self.addEventListener('activate', event => {
-  event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(name => name.startsWith('afterfall-')&&name!==CACHE).map(name=>caches.delete(name)))).then(()=>self.clients.claim()));
-});
-self.addEventListener('fetch', event => {
-  if(event.request.method!=='GET')return;
-  const u=new URL(event.request.url);
-  if(u.origin!==self.location.origin)return;
-  event.respondWith(fetch(event.request).then(res=>{
-    if(res.ok){const copy=res.clone();caches.open(CACHE).then(c=>c.put(event.request,copy)).catch(()=>{});}
-    return res;
-  }).catch(()=>caches.match(event.request).then(cached=>cached||caches.match('./index.html'))));
-});
+const CACHE='aftermath-mobile-v0.1.0';
+const ASSETS=['./','./index.html','./styles.css','./app.js','./manifest.webmanifest','./icons/icon-192.png','./icons/icon-512.png'];
+self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting()));});
+self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
+self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith(caches.match(e.request).then(cached=>cached||fetch(e.request).then(res=>{if(res.ok&&new URL(e.request.url).origin===self.location.origin){const clone=res.clone();caches.open(CACHE).then(c=>c.put(e.request,clone));}return res;})));});

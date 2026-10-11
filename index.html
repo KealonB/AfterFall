@@ -1,18 +1,23 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#11151b" />
-  <meta name="description" content="Afterfall: The Last Frequency — a deep, offline-capable text survival roleplaying game." />
-  <title>AFTERFALL • The Last Frequency</title>
-  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0c1010">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="AFTERMATH">
+  <meta name="description" content="A persistent, text-only mobile survival RPG. Every decision leaves a mark.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+  <title>AFTERMATH — A World That Remembers</title>
 </head>
 <body>
-  <div id="app" aria-live="off"></div>
-  <div id="toast" class="toast" aria-live="polite" role="status"></div>
-  <script src="data.js" defer></script>
-  <script src="game.js" defer></script>
+  <div id="desktop-gate" aria-live="polite"><div class="gate-mark">A<span>·</span></div><h1>AFTERMATH</h1><p>Built for your phone. Open this page on iPhone or Android to enter the world.</p><small>A WORLD THAT REMEMBERS</small></div>
+  <div id="rotate-gate"><div class="gate-mark">↻</div><h1>TURN YOUR PHONE</h1><p>AFTERMATH is played in portrait mode. Rotate your device to continue.</p></div>
+  <div id="app" aria-live="polite"></div>
+  <script src="app.js" defer></script>
 </body>
 </html>
